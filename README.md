@@ -3,7 +3,7 @@
 This page will target to provide sample POC to bypass ASLR and DEP using dangling pointer or memmory leak.
 
 ### ASLR Links 05/02/19
-- [How to gain root with CVE-2018-4193 in < 10s 16th of February 2019 OffensiveCon 2019](https://www.synacktiv.com/ressources/OffensiveCon_2019_macOS_how_to_gain_root_with_CVE-2018-4193_in_10s.pdf)
+- [How to gain root with CVE-2018-4193 in < 10s 16th of February 2019 OffensiveCon 2019 Eloi Benoist-Vanderbeken](https://www.synacktiv.com/ressources/OffensiveCon_2019_macOS_how_to_gain_root_with_CVE-2018-4193_in_10s.pdf)
 - [A Methodical Approach to Browser Exploitation The Exploit Development Lifecycle, From A to Z(ero Day)](https://blog.ret2.io/2018/06/05/pwn2own-2018-exploit-development/)
 - [Clone this repo to build Frida https://www.frida.re](https://github.com/frida/frida)
 
