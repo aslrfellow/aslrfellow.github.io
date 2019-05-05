@@ -5,6 +5,7 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 ### Sample 05/05/19
 
 * [1-64-asm-hello-world](https://github.com/aslrfellow/aslrfellow.github.io/raw/master/docs/1-64-asm-hello-world.pdf)
+* [1-64-asm-hello-world]({{ site.url }}/docs/1-64-asm-hello-world.pdf)
 
 ### ASLR Links 05/02/19
 - [How to gain root with CVE-2018-4193 in < 10s 16th of February 2019 OffensiveCon 2019 Eloi Benoist-Vanderbeken](https://www.synacktiv.com/ressources/OffensiveCon_2019_macOS_how_to_gain_root_with_CVE-2018-4193_in_10s.pdf)
