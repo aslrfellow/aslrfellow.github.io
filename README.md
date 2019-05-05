@@ -4,12 +4,9 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 
 ### ASLR 
 
-* https://www.youtube.com/channel/UCk2sx_3FUkKvDGlIhdUQa8A
-* https://www.youtube.com/watch?v=Pht6y4p63SE
-* https://www.youtube.com/watch?v=GddYLYlaclY
-
-
-
+* [Billy Ellis](https://www.youtube.com/channel/UCk2sx_3FUkKvDGlIhdUQa8A)
+* [How to Bypass ASLR using an Information Leak (for Stack Overflow Exploit)](https://www.youtube.com/watch?v=Pht6y4p63SE)
+* [Linux Stack Based Buffer Overflow ASLR Bypass](https://www.youtube.com/watch?v=GddYLYlaclY)
 
 ## Welcome to GitHub Pages
 
