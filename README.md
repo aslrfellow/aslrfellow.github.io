@@ -13,4 +13,6 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 
 - [More Mac OS X and iPhone sandbox escapes and kernel bugs](https://googleprojectzero.blogspot.com/2014/10/more-mac-os-x-and-iphone-sandbox.html)
 
+### Maintenance
 
+- [Wiki Pattern](/pattern)
