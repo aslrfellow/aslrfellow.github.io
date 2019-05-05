@@ -15,7 +15,7 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 
 - [SecurityLab.ru](https://www.securitylab.ru)
 - [android-ndk/camera/texture-view/src/main/cpp at master · googlesamples/android-ndk](https://github.com/googlesamples/android-ndk/tree/master/camera/texture-view/src/main/cpp)
-- [Samples: Overview  |  Android NDK  |  Android Developers](https://developer.android.com/ndk/samples)
+- [Samples: Overview - Android NDK - Android Developers](https://developer.android.com/ndk/samples)
 - [Getting Started ARM Assembly for Android amccormack.net](https://developer.android.com/ndk)
 - [Writing 64 bit assembly on Mac OS X - Carpe diem](http://www.idryman.org/blog/2014/12/02/writing-64-bit-assembly-on-mac-os-x/)
 - [assembly - nasm - cant link object file with ld on macOS Mojave - Stack Overflow](https://stackoverflow.com/questions/52830484/nasm-cant-link-object-file-with-ld-on-macos-mojave?noredirect=1&lq=1)
