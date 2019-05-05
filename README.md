@@ -40,7 +40,7 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 - [System V ABI - OSDev Wiki](https://wiki.osdev.org/System_V_ABI)
 - [MacOS System Call List - https://opensource.apple.com/source/xnu/xnu-1504.3.12/bsd/kern/syscalls.master](https://opensource.apple.com/source/xnu/xnu-1504.3.12/bsd/kern/syscalls.master)
 - [NASM Assembly Language Tutorials - asmtutor.com](https://asmtutor.com/#lesson1)
-- [Making system calls from Assembly in Mac OS X | PyTux](https://filippo.io/making-system-calls-from-assembly-in-mac-os-x/)
+- [Making system calls from Assembly in Mac OS X PyTux](https://filippo.io/making-system-calls-from-assembly-in-mac-os-x/)
 - [NASM Assembly Language Tutorials - asmtutor.com](https://asmtutor.com/)
 - [DGivney/assemblytutorials: This project was put together to teach myself NASM assembly language on linux.](https://github.com/DGivney/assemblytutorials)
 
