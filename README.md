@@ -4,7 +4,6 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 
 ### Sample 05/05/19
 
-* [1-64-asm-hello-world](https://github.com/aslrfellow/aslrfellow.github.io/raw/master/docs/1-64-asm-hello-world.pdf)
 * [1-64-asm-hello-world]({{ site.url }}/docs/1-64-asm-hello-world.pdf)
 
 ### ASLR Links 05/02/19
