@@ -54,3 +54,13 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 ### Maintenance
 
 - [Wiki Pattern](/pattern)
+
+### Custom OS
+brew install qemu
+qemu-system-x86_64 -drive format=raw,file=boot.bin
+
+* https://github.com/ghaiklor/ghaiklor-os-gcc/blob/master/cpu/idt.c
+* https://blog.ghaiklor.com/how-to-implement-your-own-hello-world-boot-loader-c0210ef5e74b
+
+
+
