@@ -1,6 +1,16 @@
 ## Welcome to ASLR Fellow
 
 This page will target to provide sample POC to bypass ASLR and DEP using dangling pointer or memmory leak.
+### Debugging 6/2/19
+
+* http://www.unknownroad.com/rtfm/gdbtut/gdbbreak.html#LIST
+* http://web.cecs.pdx.edu/~apt/cs491/gdb.pdf
+* http://dbp-consulting.com/tutorials/debugging/basicAsmDebuggingGDB.html
+* https://cs61.seas.harvard.edu/wiki/Useful_GDB_commands
+* https://stackoverflow.com/questions/22801152/understand-cmpb-and-loops-in-assembly-language
+* http://www.unknownroad.com/rtfm/gdbtut/gdbstack.html
+* ftp://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_7.html
+
 
 ### Sample 05/05/19
 
