@@ -1,6 +1,67 @@
 ## Welcome to ASLR Fellow
 
 This page will target to provide sample POC to bypass ASLR and DEP using dangling pointer or memmory leak.
+
+### Stack values 6/3/2019
+
+```
+(gdb) bt
+#0  0x080480aa in strlen ()
+(gdb) select-frame 0
+(gdb) info frame
+Stack level 0, frame at 0x0:
+ eip = 0x80480aa in strlen; saved eip = <not saved>
+ Outermost frame: outermost
+ Arglist at unknown address.
+ Locals at unknown address, Previous frame's sp in esp
+(gdb) info locals
+No symbol table info available.
+
+
+(gdb) x/32x $sp
+0xffffd1c8:	0x00	0x00	0x00	0x00	0x8a	0x80	0x04	0x08
+0xffffd1d0:	0x01	0x00	0x00	0x00	0x85	0xd3	0xff	0xff
+0xffffd1d8:	0x00	0x00	0x00	0x00	0xc1	0xd3	0xff	0xff
+0xffffd1e0:	0xd7	0xd3	0xff	0xff	0xc3	0xd9	0xff	0xff
+(gdb) disas
+Dump of assembler code for function strlen:
+   0x080480a9 <+0>:	push   %ebx
+=> 0x080480aa <+1>:	mov    %eax,%ebx
+End of assembler dump.
+(gdb) i r
+eax            0x80490b8	134516920
+ecx            0x0	0
+edx            0x0	0
+ebx            0x0	0
+esp            0xffffd1c8	0xffffd1c8
+ebp            0x0	0x0
+esi            0x0	0
+edi            0x0	0
+eip            0x80480aa	0x80480aa <strlen+1>
+eflags         0x202	[ IF ]
+cs             0x23	35
+ss             0x2b	43
+ds             0x2b	43
+es             0x2b	43
+fs             0x0	0
+gs             0x0	0
+(gdb) 
+
+
+(gdb) x/20xw $esp
+0xffffd1cc:	0x0804808a	0x00000001	0xffffd385	0x00000000
+0xffffd1dc:	0xffffd3c1	0xffffd3d7	0xffffd9c3	0xffffd9e5
+0xffffd1ec:	0xffffd9fc	0xffffda0b	0xffffda1c	0xffffda27
+0xffffd1fc:	0xffffda53	0xffffda73	0xffffda87	0xffffda98
+0xffffd20c:	0xffffdaa3	0xffffdacc	0xffffdadd	0xffffdaea
+
+bt
+
+info frame
+
+
+```
+
 ### Debugging 6/2/19
 
 * http://www.unknownroad.com/rtfm/gdbtut/gdbbreak.html#LIST
