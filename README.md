@@ -2,6 +2,194 @@
 
 This page will target to provide sample POC to bypass ASLR and DEP using dangling pointer or memmory leak.
 
+### Shell in assembly and using 'extern C' 6/8/19
+
+* https://www.tutorialspoint.com/assembly_programming/assembly_system_calls.htm
+* http://shell-storm.org/shellcode/files/syscalls.html
+* https://www.conradk.com/codebase/2017/06/06/x86-64-assembly-from-scratch/
+* https://www.csee.umbc.edu/portal/help/nasm/sample.shtml
+* https://stackoverflow.com/questions/31369916/unable-to-compile-assembly-usr-bin-ld-i386-architecture-of-input-file-array1
+* 
+
+```
+System call number
+11. sys_execve
+Syntax: int sys_execve(struct pt_regs regs)
+Source: arch/i386/kernel/process.c
+Action: execute program
+
+; Hello World Program - asmtutor.com
+; Compile with: nasm -f elf helloworld.asm
+; Link with (64 bit systems require elf_i386 option): ld -m elf_i386 helloworld.o -o helloworld
+; Run with: ./helloworld
+ 
+SECTION .data
+msg2    db      '/bin/sh'
+SECTION .text
+global  _start
+ 
+_start:
+ 
+    mov     ebx, msg2
+    mov     eax, 11
+    int     80h
+
+$ gcc -o hello  hello.o
+/usr/bin/ld: i386 architecture of input file `hello.o' is incompatible with i386:x86-64 output
+collect2: error: ld returned 1 exit status
+
+sudo apt-get install gcc-multilib g++-multilib
+
+gcc -m32 -o hello  hello.o
+
+calling printf
+
+-----
+printf1.asm
+
+; printf1.asm   print an integer from storage and from a register
+; Assemble:	nasm -f elf -l printf.lst  printf1.asm
+; Link:		gcc -o printf1  printf1.o
+; Run:		printf1
+; Output:	a=5, eax=7
+
+; Equivalent C code
+; /* printf1.c  print an int and an expression */
+; #include 
+; int main()
+; {
+;   int a=5;
+;   printf("a=%d, eax=%d\n", a, a+2);
+;   return 0;
+; }
+
+; Declare some external functions
+;
+        extern	printf		; the C function, to be called
+
+        SECTION .data		; Data section, initialized variables
+
+	a:	dd	5		; int a=5;
+fmt:    db "a=%d, eax=%d", 10, 0 ; The printf format, "\n",'0'
+
+
+        SECTION .text                   ; Code section.
+
+        global main		; the standard gcc entry point
+main:				; the program label for the entry point
+        push    ebp		; set up stack frame
+        mov     ebp,esp
+
+	mov	eax, [a]	; put a from store into register
+	add	eax, 2		; a+2
+	push	eax		; value of a+2
+        push    dword [a]	; value of variable a
+        push    dword fmt	; address of ctrl string
+        call    printf		; Call C function
+        add     esp, 12		; pop stack 3 push times 4 bytes
+
+        mov     esp, ebp	; takedown stack frame
+        pop     ebp		; same as "leave" op
+
+	mov	eax,0		;  normal, no error, return value
+	ret			; return
+	
+$ nasm -f elf -l printf.lst  printf1.asm
+$ gcc -m32 -o printf1  printf1.o
+$ ./printf1 
+a=5, eax=7
+
+section .rodata
+    format: db 'Hello %s', 10, 0
+    name:   db 'Conrad', 0
+
+section .text
+        global main
+        extern printf
+    main:
+        ; printf(format, name)
+        mov rdi, format
+        mov rsi, name
+        ; no XMM registers
+        mov rax, 0
+        call printf
+        ; return 0
+        mov rax, 0
+        ret
+
+sudo apt-get install gcc-multilib g++-multilib
+nasm hello.s -f elf64 -o hello.o && gcc -m32 -Wall -Wextra -Werror -o hello hello.o
+
+; printf2.asm  use "C" printf on char, string, int, double
+; 
+; Assemble:	nasm -f elf -l printf2.lst  printf2.asm
+; Link:		gcc -o printf2  printf2.o
+; Run:		printf2
+; Output:	
+;Hello world: a string of length 7 1234567 6789ABCD 5.327000e-30 -1.234568E+302
+; 
+; A similar "C" program
+; #include 
+; int main()
+; {
+;   char   char1='a';         /* sample character */
+;   char   str1[]="string";   /* sample string */
+;   int    int1=1234567;      /* sample integer */
+;   int    hex1=0x6789ABCD;   /* sample hexadecimal */
+;   float  flt1=5.327e-30;    /* sample float */
+;   double flt2=-123.4e300;   /* sample double */
+; 
+;   printf("Hello world: %c %s %d %X %e %E \n", /* format string for printf */
+;          char1, str1, int1, hex1, flt1, flt2);
+;   return 0;
+; }
+
+
+        extern printf                   ; the C function to be called
+
+        SECTION .data                   ; Data section
+
+msg:    db "Hello world: %c %s of length %d %d %X %e %E",10,0
+					; format string for printf
+char1:	db	'a'			; a character 
+str1:	db	"string",0	        ; a C string, "string" needs 0
+len:	equ	$-str1			; len has value, not an address
+inta1:	dd	1234567		        ; integer 1234567
+hex1:	dd	0x6789ABCD	        ; hex constant 
+flt1:	dd	5.327e-30		; 32-bit floating point
+flt2:	dq	-123.456789e300	        ; 64-bit floating point
+
+	SECTION .bss
+		
+flttmp:	resq 1			        ; 64-bit temporary for printing flt1
+	
+        SECTION .text                   ; Code section.
+
+        global	main		        ; "C" main program 
+main:				        ; label, start of main program
+	 
+	fld	dword [flt1]	        ; need to convert 32-bit to 64-bit
+	fstp	qword [flttmp]          ; floating load makes 80-bit,
+	                                ; store as 64-bit
+	                                ; push last argument first
+	push	dword [flt2+4]	        ; 64 bit floating point (bottom)
+	push	dword [flt2]	        ; 64 bit floating point (top)
+	push	dword [flttmp+4]        ; 64 bit floating point (bottom)
+	push	dword [flttmp]	        ; 64 bit floating point (top)
+	push	dword [hex1]	        ; hex constant
+	push	dword [inta1]	        ; integer data pass by value
+	push	dword len	        ; constant pass by value
+	push	dword str1		; "string" pass by reference 
+        push    dword [char1]		; 'a'
+        push    dword msg		; address of format string
+        call    printf			; Call C function
+        add     esp, 40			; pop stack 10*4 bytes
+
+        mov     eax, 0			; exit code, 0=normal
+        ret				; main returns to operating system
+ 
+```
+
 ### Stack values 6/3/2019
 
 ```
