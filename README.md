@@ -4,6 +4,7 @@ This page will target to provide sample POC to bypass ASLR and DEP using danglin
 
 ### Links 6/16/19
 
+* [using-shellcode]({{ site.url }}/using-shellcode)
 * [qemu]({{ site.url }}/qemu)
 * [metasploit-manual-install]({{ site.url }}/metasploit-manual-install)
 * [ret2libc-dep-nx-bypass]({{ site.url }}/ret2libc-dep-nx-bypass)
