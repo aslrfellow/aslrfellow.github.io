@@ -2,6 +2,14 @@
 
 This page will target to provide sample POC to bypass ASLR and DEP using dangling pointer or memmory leak.
 
+### Links 6/16/19
+
+* [qemu]({{ site.url }}/qemu)
+* [metasploit-manual-install]({{ site.url }}/metasploit-manual-install)
+* [ret2libc-dep-nx-bypass]({{ site.url }}/ret2libc-dep-nx-bypass)
+* [android]({{ site.url }}/android)
+
+
 ### Shell in assembly and using 'extern C' 6/8/19
 
 * https://www.tutorialspoint.com/assembly_programming/assembly_system_calls.htm
