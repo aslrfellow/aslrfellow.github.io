@@ -5,7 +5,7 @@
 * http://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10.1-server-amd64.iso
 * http://old-releases.ubuntu.com/releases/17.10/ubuntu-17.10-server-arm64.iso
 
-```
+```shell
 
 VBoxManage list bridgedifs
 
