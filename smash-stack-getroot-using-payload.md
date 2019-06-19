@@ -9,7 +9,7 @@
 
 ## Scripts
 
-```
+```shell
 Get root from shellcode on payload. Not on environment variable
 
 gdb-peda$ q
