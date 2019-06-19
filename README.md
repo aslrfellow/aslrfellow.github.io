@@ -2,9 +2,13 @@
 
 This page will target to provide sample POC to bypass ASLR and DEP using dangling pointer or memmory leak.
 
-### Links 6/16/19
+
+### Links 6/19/19
 
 * [smash-stack-getroot-using-payload]({{ site.url }}/smash-stack-getroot-using-payload)
+
+### Links 6/16/19
+
 * [smash-stack-getroot-using-environment]({{ site.url }}/smash-stack-getroot-using-environment)
 * [qemu]({{ site.url }}/qemu)
 * [metasploit-manual-install]({{ site.url }}/metasploit-manual-install)
