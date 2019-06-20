@@ -2,6 +2,9 @@
 
 This page will target to provide sample POC to bypass ASLR and DEP using dangling pointer or memmory leak.
 
+### Links 6/20/19
+
+* [return_to_libc_32_64_bit]({{ site.url }}/return_to_libc_32_64_bit)
 
 ### Links 6/19/19
 
